@@ -124,7 +124,7 @@ export default function ProfessionalPortfolio() {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-slate-400 leading-relaxed">
-            Web Developer specializing in building high performance, responsive
+            Web Developer specialized in building high performance, responsive
             web applications with Next.js, React, Node.js and Tailwind CSS.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">
