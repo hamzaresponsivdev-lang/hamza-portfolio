@@ -16,6 +16,7 @@ import {
   Brain,
   X,
   ZoomIn,
+  Menu,
 } from "lucide-react";
 
 export default function ProfessionalPortfolio() {
@@ -43,6 +44,9 @@ export default function ProfessionalPortfolio() {
   // Modal and Zoom states
   const [activeModal, setActiveModal] = useState(null); // 'store', 'gym', 'school', 'quiz'
   const [selectedImage, setSelectedImage] = useState(null);
+
+  // Mobile Menu state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Auto-sliding effects
   useEffect(() => {
@@ -82,9 +86,22 @@ export default function ProfessionalPortfolio() {
       {/* ================= NAVIGATION BAR ================= */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            Hamza Abbasi
-          </span>
+          {/* Left side: Hamburger button (mobile) + Logo */}
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-slate-400 hover:text-cyan-400 focus:outline-none transition p-1"
+              aria-label="Toggle Menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+
+            <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Hamza Abbasi
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
             <a href="#about" className="hover:text-cyan-400 transition">
               About
@@ -99,6 +116,8 @@ export default function ProfessionalPortfolio() {
               Education
             </a>
           </nav>
+
+          {/* Right side contact button */}
           <div className="flex items-center space-x-4">
             <a
               href="mailto:hamza.responsiv.dev@gmail.com"
@@ -108,6 +127,40 @@ export default function ProfessionalPortfolio() {
             </a>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-4 space-y-3 backdrop-blur-md">
+            <a
+              href="#about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-slate-300 hover:text-cyan-400 font-medium py-1.5 transition"
+            >
+              About
+            </a>
+            <a
+              href="#skills"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-slate-300 hover:text-cyan-400 font-medium py-1.5 transition"
+            >
+              Skills
+            </a>
+            <a
+              href="#projects"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-slate-300 hover:text-cyan-400 font-medium py-1.5 transition"
+            >
+              Projects
+            </a>
+            <a
+              href="#education"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-slate-300 hover:text-cyan-400 font-medium py-1.5 transition"
+            >
+              Education
+            </a>
+          </div>
+        )}
       </header>
 
       {/* ================= HERO SECTION ================= */}
